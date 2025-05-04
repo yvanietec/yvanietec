@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumTech | Future-Ready Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --hue: 210;
+            --primary: hsl(var(--hue), 100%, 50%);
+            --secondary: hsl(calc(var(--hue) + 120), 100%, 50%);
+            --bg: #0a0a12;
+            --neon-glow: 0 0 20px hsl(var(--hue), 100%, 50%),
+                         0 0 40px hsl(calc(var(--hue) + 60), 100%, 30%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Cyber Cursor */
+        .cursor {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            transition: transform 0.3s, opacity 0.3s;
+            z-index: 9999;
+        }
+
+        /* Particle Background */
+        #particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Neural Network Effect */
+        .neural-path {
+            position: absolute;
+            stroke: var(--primary);
+            stroke-width: 0.5;
+            opacity: 0.1;
+        }
+
+        /* Cyber Navigation */
+        .cyber-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(var(--neon-glow));
+        }
+        #about {
+    padding: 6rem 2rem;
+    /* background: #0f1117; */
+    text-align: center;
+  }
+
+  #about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+  }
+
+  #about p {
+    font-size: 1.2rem;
+    color: #ccc;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            padding: 1rem;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            transition: left 0.3s;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        /* Holographic Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: hologram 4s infinite;
+        }
+
+        @keyframes hologram {
+            0%, 100% { filter: drop-shadow(var(--neon-glow)); }
+            50% { filter: drop-shadow(0 0 30px var(--primary)); }
+        }
+
+        /* Quantum Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--neon-glow);
+        }
+
+        /* Neural Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 5rem 2rem;
+            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid var(--primary);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Cyber Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 5rem auto;
+            padding: 3rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            border: 1px solid var(--primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: var(--neon-glow);
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <canvas id="particles"></canvas>
+
+    <nav class="cyber-nav">
+        <div class="nav-content">
+            <div class="logo">YvanieTec</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Redefining Digital Evolution</h1>
+            <p>Where Artificial Intelligence Meets Human Creativity</p>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Custom Software Development</h3>
+                <p>Tailored solutions for your unique business needs</p>
+            </div>
+            <div class="service-card">
+                <h3>AI & Machine Learning</h3>
+                <p>Smart solutions for intelligent business operations</p>
+            </div>
+            <div class="service-card">
+                <h3>Cloud Solutions</h3>
+                <p>Scalable cloud infrastructure for growing businesses</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">250%</div>
+                <div class="stat-text">Performance Boost</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0ms</div>
+                <div class="stat-text">Quantum Latency</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-text">Possibilities</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About TechVision</h2>
+        <p>We’re a next-gen digital solutions company helping startups and enterprises build intelligent, scalable, and secure technology ecosystems. From AI to cloud—our mission is to transform ideas into powerful realities.</p>
+      </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-form">
+            <h2>Initiate Connection</h2>
+            <form>
+                <input type="text" class="form-input" placeholder="Your Designation">
+                <input type="email" class="form-input" placeholder="Quantum Link">
+                <textarea class="form-input" rows="5" placeholder="Transmission Content"></textarea>
+                <button type="submit" class="form-input">Establish Connection</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Cyber Cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+        });
+
+        // Particle Network
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.radius = Math.random() * 2;
+                this.alpha = Math.random() * 0.5;
+            }
+
+            draw() {
+                ctx.fillStyle = `hsla(${Math.random() * 360}, 100%, 50%, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+            }
+        }
+
+        const particles = Array(100).fill().map(() => new Particle());
+
+        function animate() {
+            ctx.fillStyle = 'rgba(10, 10, 18, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Dynamic Color Shift
+        function updateColors() {
+            document.documentElement.style.setProperty('--hue', Date.now() / 100 % 360);
+            requestAnimationFrame(updateColors);
+        }
+        updateColors();
+
+        // Scroll Animations
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .stat-item').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(50px)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
