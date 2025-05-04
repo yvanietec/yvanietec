@@ -19,7 +19,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none;
+            cursor: auto;
         }
 
         body {
@@ -29,18 +29,7 @@
             overflow-x: hidden;
         }
 
-        /* Cyber Cursor */
-        .cursor {
-            position: fixed;
-            width: 30px;
-            height: 30px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            mix-blend-mode: difference;
-            pointer-events: none;
-            transition: transform 0.3s, opacity 0.3s;
-            z-index: 9999;
-        }
+   
 
         /* Particle Background */
         #particles {
@@ -58,17 +47,16 @@
             opacity: 0.1;
         }
 
-        /* Cyber Navigation */
         .cyber-nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 2rem;
+            padding: 0.75rem 1.5rem;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
             z-index: 1000;
         }
-
+        
         .nav-content {
             max-width: 1400px;
             margin: 0 auto;
@@ -228,7 +216,7 @@
     </style>
 </head>
 <body>
-    <div class="cursor"></div>
+ 
     <canvas id="particles"></canvas>
 
     <nav class="cyber-nav">
@@ -302,12 +290,7 @@
     </section>
 
     <script>
-        // Cyber Cursor
-        const cursor = document.querySelector('.cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = `${e.clientX}px`;
-            cursor.style.top = `${e.clientY}px`;
-        });
+    
 
         // Particle Network
         const canvas = document.getElementById('particles');
