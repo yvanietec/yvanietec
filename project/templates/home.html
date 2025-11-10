@@ -1,412 +1,1042 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuantumTech | Future-Ready Solutions</title>
-    {% load static %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Innovate - Tech Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
+      :root {
+        --mobile-padding: 1.5rem;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;  
+        overflow-x: hidden;
+      }
+      
+      .hero-gradient {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .hero-gradient::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(15, 23, 42, 0) 50%);
+        animation: rotate 30s linear infinite;
+        z-index: 1;
+      }
+      
+      .hero-gradient::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, rgba(15, 23, 42, 0) 40%);
+        animation: rotate 20s linear infinite reverse;
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .feature-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: linear-gradient(to bottom, rgba(59, 130, 246, 0.1), transparent);
+        transition: height 0.5s ease;
+        z-index: 0;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.15);
+      }
+
+      .feature-card:hover::before {
+        height: 100%;
+      }
+
+      .feature-card-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .nav-link {
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #3b82f6;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+      
+      @keyframes floating {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+
+      .team-card {
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+
+      .team-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .team-card:hover .team-overlay {
+        opacity: 1;
+      }
+
+      .team-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: flex-end;
+        padding: 1.5rem;
+      }
+
+      .btn-animated {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      
+      .btn-animated::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: all 0.6s ease;
+      }
+
+      .btn-animated:hover::before {
+          left: 100%;
+      }
+
+      .particle {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(59, 130, 246, 0.6);
+          animation: float 15s infinite linear;
+      }
+
+      @keyframes float {
+          0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+      }
+
+      .typing-animation {
+          overflow: hidden;
+          border-right: 2px solid #3b82f6;
+          white-space: nowrap;
+          margin: 0 auto;
+          animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      }
+      
+      @keyframes typing {
+          from { width: 0 }
+          to { width: 100% }
+      }
+
+      @keyframes blink-caret {
+          from, to { border-color: transparent }
+          50% { border-color: #3b82f6 }
+      }
+
+      .stats-counter {
+          display: inline-block;
+      }
+
+      .ripple-btn {
+          position: relative;
+          overflow: hidden;
+      }
+
+      .ripple-btn::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+          background-repeat: no-repeat;
+          background-position: 50%;
+          transform: scale(10, 10);
+          opacity: 0;
+          transition: transform .5s, opacity 1s;
+      }
+
+      .ripple-btn:active::after {
+          transform: scale(0, 0);
+          opacity: 0.3;
+          transition: 0s;
+      }
+      
+      /* Mobile specific styles */
+      @media (max-width: 640px) {
         :root {
-            --hue: 210;
-            --primary: hsl(var(--hue), 100%, 50%);
-            --secondary: hsl(calc(var(--hue) + 120), 100%, 50%);
-            --bg: #0a0a12;
-            --neon-glow: 0 0 20px hsl(var(--hue), 100%, 50%),
-                0 0 40px hsl(calc(var(--hue) + 60), 100%, 30%);
+          --mobile-padding: 1rem;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: auto;
+        
+        h1 {
+          font-size: 2rem !important;
+          line-height: 1.2 !important;
         }
-
-        body {
-            background: var(--bg);
-            color: white;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            overflow-x: hidden;
+        
+        h2 {
+          font-size: 1.75rem !important;
         }
-
-
-
-        /* Background video */
-        #bg-video {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: auto;
-            height: auto;
-            min-width: 100%;
-            min-height: 100%;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-            z-index: -2;
-            /* behind canvas which is -1 */
-            /* brighten the video slightly so it shows through particles and text */
-            filter: brightness(0.75) saturate(1.05);
+        
+        .hero-content {
+          padding-top: 6rem !important;
+          padding-bottom: 3rem !important;
         }
-
-        /* Particle Background */
-        #particles {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
+        
+        .feature-card, .team-card {
+          padding: 1.5rem !important;
         }
-
-        /* Neural Network Effect */
-        .neural-path {
-            position: absolute;
-            stroke: var(--primary);
-            stroke-width: 0.5;
-            opacity: 0.1;
+        
+        .mobile-padding {
+          padding-left: var(--mobile-padding);
+          padding-right: var(--mobile-padding);
         }
-
-        .cyber-nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 0.75rem 1.5rem;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 1000;
+        
+        .mobile-text-center {
+          text-align: center;
         }
-
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        
+        .mobile-flex-col {
+          flex-direction: column;
         }
-
-        .logo {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(var(--neon-glow));
+        
+        .mobile-full-width {
+          width: 100% !important;
+          max-width: 100% !important;
         }
-
-        #about {
-            padding: 6rem 2rem;
-            /* background: #0f1117; */
-            text-align: center;
+        
+        .mobile-mt-2 {
+          margin-top: 2rem !important;
         }
-
-        #about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        
+        .mobile-space-y-4 > * + * {
+          margin-top: 1rem;
         }
-
-        #about p {
-            font-size: 1.2rem;
-            color: #ccc;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            position: relative;
-            padding: 1rem;
-            overflow: hidden;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: var(--primary);
-            transition: left 0.3s;
-        }
-
-        .nav-links a:hover::before {
-            left: 100%;
-        }
-
-        /* Holographic Hero */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: hologram 4s infinite;
-        }
-
-        @keyframes hologram {
-
-            0%,
-            100% {
-                filter: drop-shadow(var(--neon-glow));
-            }
-
-            50% {
-                filter: drop-shadow(0 0 30px var(--primary));
-            }
-        }
-
-        /* Quantum Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 5rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--neon-glow);
-        }
-
-        /* Neural Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 5rem 2rem;
-            background: linear-gradient(45deg, #000428 0%, #004e92 100%);
-            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem;
-            border: 1px solid var(--primary);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Cyber Form */
-        .contact-form {
-            max-width: 600px;
-            margin: 5rem auto;
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 1px solid var(--primary);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 2rem;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .form-input:focus {
-            border-color: var(--primary);
-            box-shadow: var(--neon-glow);
-        }
+      }
     </style>
 </head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Animated Particles -->
+  <div class="particles-container fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+    <!-- Particles will be generated by JS -->
+  </div>
 
-<body>
-
-    {# Background video. If possible, rename the file to `background.mp4` to avoid spaces/parentheses in URLs. #}
-    <video id="bg-video" autoplay muted loop playsinline poster="{% static 'images/background-poster.jpg' %}">
-        <!-- Primary MP4 source (keeps your original filename). Consider adding a webm variant for better compression/support. -->
-        <source src="{% static 'images/background (2).mp4' %}" type="video/mp4">
-        <!-- Example webm source (create and add `background.webm` to static/images for this to work):
-        <source src="{% static 'images/background.webm' %}" type="video/webm">
-        -->
-        Your browser does not support the video tag.
-    </video>
-
-    <canvas id="particles"></canvas>
-
-    <nav class="cyber-nav">
-        <div class="nav-content">
-            <div class="logo">YvanieTec</div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm fixed w-full z-10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <img src="y_logo.png" alt="Yvanietec Logo" class="h-12 w-auto  " style="max-height: 48px;">
+            <span class="ml-2 text-xl font-semibold animate__animated animate__fadeIn animate__delay-1s">Yvanietec</span>
+          </div>
         </div>
+        <div class="hidden md:flex md:items-center md:space-x-8">
+          <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium animate__animated animate__fadeIn">Home</a>
+          <a href="#features" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium animate__animated animate__fadeIn">Features</a>
+          <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium animate__animated animate__fadeIn">About</a>
+          <a href="#team" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium animate__animated animate__fadeIn">Team</a>
+          <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium animate__animated animate__fadeIn">Contact</a>
+        </div>
+
+        <div class="flex items-center md:hidden">
+            <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+            </button>
+          </div>
+          <!-- <div class="hidden md:flex items-center">
+            <a href="#contact" class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
+              Get Started
+            </a>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Home</a>
+          <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Features</a>
+          <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">About</a>
+          <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Team</a>
+          <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Contact</a>
+          <a href="#contact" class="block w-full text-center mt-3 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
+            Get Started
+          </a>
+        </div>
+      </div>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Redefining Digital Evolution</h1>
-            <p>Where Artificial Intelligence Meets Human Creativity</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient pt-20 md:pt-28 pb-12 md:pb-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 mobile-padding">
+        <div class="flex flex-col md:flex-row items-center hero-content">
+          
+          <div class="md:w-1/2 md:pr-12 mobile-full-width">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight animate__animated animate__fadeInUp mobile-text-center md:text-left">
+              <span class="typing-animation inline-block">Innovative Solutions</span>
+              <br>for Tomorrow's Challenges
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-blue-100 animate__animated animate__fadeInUp animate__delay-1s mobile-text-center md:text-left">
+              We build cutting-edge technology that transforms businesses and drives growth in the digital era.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 mobile-flex-col mobile-space-y-4">
+              <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
+                Get Started
+              </a>
+              <a href="#features" class="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md text-base font-medium text-white bg-gray-700 hover:bg-gray-800">
+                Learn More
+                <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="md:w-1/2 mt-10 md:mt-0 mobile-full-width">
+            <div class="relative floating animate__animated animate__fadeIn animate__delay-2s">
+              <div class="absolute inset-0 bg-blue-500 rounded-full opacity-10 blur-3xl transform -translate-x-4 translate-y-4"></div>
+              <svg class="relative w-full h-auto max-w-md mx-auto text-white" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="100" y="50" width="300" height="200" rx="10" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-width="2"/>
+                <rect x="120" y="80" width="260" height="20" rx="4" fill="#ffffff" fill-opacity="0.3"/>
+                <rect x="120" y="120" width="180" height="20" rx="4" fill="#ffffff" fill-opacity="0.3"/>
+                <rect x="120" y="160" width="220" height="20" rx="4" fill="#ffffff" fill-opacity="0.3"/>
+                <rect x="120" y="200" width="140" height="20" rx="4" fill="#ffffff" fill-opacity="0.3"/>
+                <circle cx="380" cy="140" r="40" fill="#3b82f6" fill-opacity="0.8" class="pulse"/>
+                <path d="M370 140L380 150L390 130" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="150" y="250" width="200" height="40" rx="6" fill="#3b82f6"/>
+                <text x="250" y="275" text-anchor="middle" fill="white" font-size="16" font-family="Inter, sans-serif">Get Started</text>
+              </svg>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section class="services" id="services">
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Custom Software Development</h3>
-                <p>Tailored solutions for your unique business needs</p>
-            </div>
-            <div class="service-card">
-                <h3>AI & Machine Learning</h3>
-                <p>Smart solutions for intelligent business operations</p>
-            </div>
-            <div class="service-card">
-                <h3>Cloud Solutions</h3>
-                <p>Scalable cloud infrastructure for growing businesses</p>
-            </div>
+    <!-- Features Section -->
+    <section id="features" class="py-12 md:py-20 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 mobile-padding">
+        
+        <div class="text-center" data-aos="fade-up">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            Powerful Features
+          </h2>
+          <p class="mt-4 max-w-2xl mx-auto text-base md:text-xl text-gray-500">
+            Our technology platform offers everything you need to succeed in today's digital landscape.
+          </p>
         </div>
+
+        <div class="mt-10 md:mt-16 grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          
+          <!-- Feature 1 -->
+          <div class="feature-card bg-gray-50 rounded-lg p-6 md:p-8 border border-gray-100 shadow-sm transition duration-300" data-aos="zoom-in" data-aos-delay="100">
+            <div class="feature-card-content">
+              <div class="h-12 w-12 rounded-md bg-blue-500 text-white flex items-center justify-center">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2"/>
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-medium text-gray-900">Advanced Analytics</h3>
+              <p class="mt-2 text-gray-600 text-base">
+                Gain valuable insights with our powerful analytics tools. Track performance, identify trends, and make data-driven decisions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card bg-gray-50 rounded-lg p-6 md:p-8 border border-gray-100 shadow-sm transition duration-300" data-aos="zoom-in" data-aos-delay="200">
+            <div class="feature-card-content">
+              <div class="h-12 w-12 rounded-md bg-blue-500 text-white flex items-center justify-center">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-medium text-gray-900">Enterprise Security</h3>
+              <p class="mt-2 text-gray-600 text-base">
+                Protect your data with our enterprise-grade security. We implement the latest encryption and security protocols to keep your information safe.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card bg-gray-50 rounded-lg p-6 md:p-8 border border-gray-100 shadow-sm transition duration-300" data-aos="zoom-in" data-aos-delay="300">
+            <div class="feature-card-content">
+              <div class="h-12 w-12 rounded-md bg-blue-500 text-white flex items-center justify-center">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10v3l4 7h-7v-2h3l-3-5h-4v2H7v-4h6z" />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-medium text-gray-900">Lightning Fast Performance</h3>
+              <p class="mt-2 text-gray-600 text-base">
+                Experience unparalleled speed and efficiency. Our optimized infrastructure ensures your applications run smoothly at all times.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card bg-gray-50 rounded-lg p-6 md:p-8 border border-gray-100 shadow-sm transition duration-300" data-aos="zoom-in">
+            <div class="feature-card-content">
+              <div class="h-12 w-12 rounded-md bg-blue-500 text-white flex items-center justify-center">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-4.9-4H7a4 4 0 00-4 4z" />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-medium text-gray-900">Cloud Integration</h3>
+              <p class="mt-2 text-gray-600 text-base">
+                Seamlessly integrate with all major cloud providers. Deploy your applications anywhere with our flexible cloud solutions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="feature-card bg-gray-50 rounded-lg p-6 md:p-8 border border-gray-100 shadow-sm transition duration-300" data-aos="zoom-in">
+            <div class="feature-card-content">
+              <div class="h-12 w-12 rounded-md bg-blue-500 text-white flex items-center justify-center">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-medium text-gray-900">24/7 Support</h3>
+              <p class="mt-2 text-gray-600 text-base">
+                Our dedicated support team is available around the clock. Get help whenever you need it with our responsive customer service.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="feature-card bg-gray-50 rounded-lg p-6 md:p-8 border border-gray-100 shadow-sm transition duration-300" data-aos="zoom-in">
+            <div class="feature-card-content">
+              <div class="h-12 w-12 rounded-md bg-blue-500 text-white flex items-center justify-center">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 011.14.01a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 00-1 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-3a1 1 0 00-1-1H6a1 1 0 01-1-1V6a1 1 0 011-1h3a1 1 0 001-1z" />
+                </svg>
+              </div>
+              <h3 class="mt-5 text-lg font-medium text-gray-900">Customizable Solutions</h3>
+              <p class="mt-2 text-gray-600 text-base">
+                Tailor our platform to meet your specific needs. Our flexible architecture allows for extensive customization and integration.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">250%</div>
-                <div class="stat-text">Performance Boost</div>
+    <!-- About Section -->
+    <section id="about" class="py-12 md:py-20 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 mobile-padding">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 md:pr-12 mobile-full-width" data-aos="fade-right">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              About Our Company
+            </h2>
+            <p class="mt-4 text-base md:text-lg text-gray-600">
+              Founded in 2025, our mission is to revolutionize how businesses leverage technology. We believe in creating solutions that are not only effective but also intuitive.
+            </p>
+            <p class="mt-4 text-base md:text-lg text-gray-600">
+              Our team of experts brings decades of combined experience in software development, cloud architecture, and data science. We're passionate about delivering results.
+            </p>
+
+            <!-- <div class="mt-8 flex flex-wrap gap-6">
+               <div class="flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                <span class="text-3xl font-bold text-blue-600 counter" data-target="500">0</span>
+                <span class="text-gray-500">Clients Worldwide</span>
+              </div>
+              <div class="flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                <span class="text-3xl font-bold text-blue-600 counter" data-target="98">0</span>
+                <span class="text-gray-500">Customer Satisfaction</span>
+              </div> -->
+              <!-- <div class="flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                <span class="text-3xl font-bold text-blue-600">24/7</span>
+                <span class="text-gray-500">Support Available</span>
+              </div> -->
+            <!-- </div> -->
+          </div>
+
+          <div class="md:w-1/2 mt-10 md:mt-0 mobile-full-width mobile-mt-2" data-aos="fade-left">
+            <div class="relative rounded-lg overflow-hidden shadow-xl floating">
+              <svg class="w-full h-auto max-w-md mx-auto" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="600" height="400" fill="#e2e8f0" />
+                <path d="M0 0L600 0L600 400L0 400L0 0Z" fill="#f0f2f7" />
+                <path d="M300 80C380 80 450 150 450 230C450 310 380 380 300 380 220 380 150 310 150 230C150 150 220 80 300 80Z" fill="#3b82f6">
+                  <animate attributeName="fill-opacity" values="0;0.3;0.2" dur="4s" repeatCount="indefinite" />
+                </path>
+                <path d="M300 120C360 120 410 170 410 230C410 290 360 340 300 340C240 340 190 290 190 230C190 170 240 120 300 120Z" fill="#3b82f6">
+                  <animate attributeName="fill-opacity" values="0;0.5;0.4" dur="3s" repeatCount="indefinite" />
+                </path>
+                <path d="M300 160C340 160 370 190 370 230C370 270 340 300 300 300C260 300 230 270 230 230C230 190 260 160 300 160Z" fill="#3b82f6">
+                  <animate attributeName="fill-opacity" values="0;0.7;0.6" dur="2s" repeatCount="indefinite" />
+                </path>
+                <path d="M300 200C320 200 335 215 335 235C335 255 320 270 300 270C280 270 265 255 265 235C265 215 280 200 300 200Z" fill="#3b82f6">
+                  <animate attributeName="fill-opacity" values="0;0.9;0.8" dur="1.5s" repeatCount="indefinite" />
+                </path>
+                <path d="M300 220C310 220 315 225 315 235C315 245 310 250 300 250C290 250 285 245 285 235C285 225 290 220 300 220Z" fill="#fff">
+                  <animate attributeName="r" values="5;7;5" dur="1s" repeatCount="indefinite" />
+                </path>
+              </svg>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">0ms</div>
-                <div class="stat-text">Quantum Latency</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">∞</div>
-                <div class="stat-text">Possibilities</div>
-            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="about">
-        <h2>About TechVision</h2>
-        <p>We’re a next-gen digital solutions company helping startups and enterprises build intelligent, scalable, and
-            secure technology ecosystems. From AI to cloud—our mission is to transform ideas into powerful realities.
-        </p>
+    <!-- Team Section -->
+    <!-- <section id="team" class="py-12 md:py-20 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 mobile-padding">
+        <div class="text-center" data-aos="fade-up">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            Meet Our Team
+          </h2>
+          <p class="mt-4 max-w-2xl mx-auto text-base md:text-xl text-gray-500">
+            The talented people behind our success.
+          </p>
+        </div>
+
+        <div class="mt-10 md:mt-16 grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> -->
+          <!-- Team Member 1 -->
+          <!-- <div class="team-card relative bg-gray-50 rounded-lg overflow-hidden shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+            <div class="h-48 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center">
+              <svg class="h-24 w-24 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 14.75c2.67 0 8 1.33 8 4v1.25H4v-1.25c0-2.67 5.33-4 8-4zm0-9.5a4 4 0 110 8 4 4 0 010-8z" />
+              </svg>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-medium text-gray-900">Sarah Johnson</h3>
+              <p class="text-blue-600">CEO & Founder</p>
+              <p class="mt-3 text-gray-600 text-base">
+                With over 15 years of experience in tech leadership, Sarah drives our company vision and strategy.
+              </p>
+              <div class="mt-4 flex space-x-3">
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                  <span class="sr-only">Twitter</span>
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646A4.118 4.118 0 0019.448 2.3a8.224 8.224 0 01-2.605.996A4.107 4.107 0 009.85 6.03a11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.482A4.073 4.073 0 012 6.575v.051a4.107 4.107 0 003.292 4.022 4.095 4.095 0 01-1.085.145c-.265 0-.522-.026-.775-.074a4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 16.601a11.616 11.616 0 006.29 1.84" />
+                  </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                  <span class="sr-only">LinkedIn</span>
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.013V9.25h2.563v.968h.037c.357-.675 1.23-1.387 2.53-1.387 2.707 0 3.206 1.781 3.206 4.099v4.408zM5.337 8.282a1.474 1.474 0 110-2.948 1.474 1.474 0 010 2.948zM6.704 16.338H3.97V9.25h2.734v7.088zM17.5 0h-15C1.119 0 0 1.119 0 2.5v15C0 18.881 1.119 20 2.5 20h15c1.381 0 2.5-1.119 2.5-2.5v-15C20 1.119 18.881 0 17.5 0z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="team-overlay">
+              <div class="text-white">
+                <p class="font-medium">Connect with Sarah</p>
+                <div class="mt-2 flex space-x-3">
+                  <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646A4.118 4.118 0 0019.448 2.3a8.224 8.224 0 01-2.605.996A4.107 4.107 0 009.85 6.03a11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.482A4.073 4.073 0 012 6.575v.051a4.107 4.107 0 003.292 4.022 4.095 4.095 0 01-1.085.145c-.265 0-.522-.026-.775-.074a4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 16.601a11.616 11.616 0 006.29 1.84" />
+                    </svg>
+                  </a>
+                  <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M19 0H5C3.343 0 2 1.343 2 3v18c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5V3c0-2.657-2.239-5-5-5zM5 14c0-2.761 2.239-5 5-5h4c2.761 0 5 2.239 5 5v4c0 2.761-2.239 5-5 5h-4c-2.761 0-5-2.239-5-5v-4z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Team Member 2 -->
+          <!-- <div class="team-card relative bg-gray-50 rounded-lg overflow-hidden shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+            <div class="h-48 bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center">
+              <svg class="h-24 w-24 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 14.75c2.67 0 8 1.33 8 4v1.25H4v-1.25c0-2.67 5.33-4 8-4zm0-9.5a4 4 0 110 8 4 4 0 010-8z" />
+              </svg>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-medium text-gray-900">Michael Chen</h3>
+              <p class="text-blue-600">CTO</p>
+              <p class="mt-3 text-gray-600 text-base">
+                Michael leads our technical strategy and oversees all aspects of product development and engineering.
+              </p>
+              <div class="mt-4 flex space-x-3">
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                  <span class="sr-only">Twitter</span>
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646A4.118 4.118 0 0019.448 2.3a8.224 8.224 0 01-2.605.996A4.107 4.107 0 009.85 6.03a11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.482A4.073 4.073 0 012 6.575v.051a4.107 4.107 0 003.292 4.022 4.095 4.095 0 01-1.085.145c-.265 0-.522-.026-.775-.074a4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 16.601a11.616 11.616 0 006.29 1.84" />
+                  </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                  <span class="sr-only">LinkedIn</span>
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.013V9.25h2.563v.968h.037c.357-.675 1.23-1.387 2.53-1.387 2.707 0 3.206 1.781 3.206 4.099v4.408zM5.337 8.282a1.474 1.474 0 110-2.948 1.474 1.474 0 010 2.948zM6.704 16.338H3.97V9.25h2.734v7.088zM17.5 0h-15C1.119 0 0 1.119 0 2.5v15C0 18.881 1.119 20 2.5 20h15c1.381 0 2.5-1.119 2.5-2.5v-15C20 1.119 18.881 0 17.5 0z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="team-overlay">
+              <div class="text-white">
+                <p class="font-medium">Connect with Michael</p>
+                <div class="mt-2 flex space-x-3">
+                  <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646A4.118 4.118 0 0019.448 2.3a8.224 8.224 0 01-2.605.996A4.107 4.107 0 009.85 6.03a11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.482A4.073 4.073 0 012 6.575v.051a4.107 4.107 0 003.292 4.022 4.095 4.095 0 01-1.085.145c-.265 0-.522-.026-.775-.074a4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 16.601a11.616 11.616 0 006.29 1.84" />
+                    </svg>
+                  </a>
+                  <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-8 16.338h-2.734V9.25H11V16.338zM6.704 8.282a1.474 1.474 0 110-2.948 1.474 1.474 0 010 2.948zm10.634 8.056h-2.668v-4.248c0-1.121.211-2.207 1.601-2.207 1.37 0 1.387 1.282 1.387 2.277v4.178z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Team Member 3 -->
+          <!-- <div class="team-card relative bg-gray-50 rounded-lg overflow-hidden shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+            <div class="h-48 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+              <svg class="h-24 w-24 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 14.75c2.67 0 8 1.33 8 4v1.25H4v-1.25c0-2.67 5.33-4 8-4zm0-9.5a4 4 0 110 8 4 4 0 010-8z" />
+              </svg>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-medium text-gray-900">Emily Rodriguez</h3>
+              <p class="text-blue-600">Head of Product</p>
+              <p class="mt-3 text-gray-600 text-base">
+                Emily ensures our products meet the highest standards of quality and deliver exceptional user experiences.
+              </p>
+              <div class="mt-4 flex space-x-3">
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                  <span class="sr-only">Twitter</span>
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646A4.118 4.118 0 0019.448 2.3a8.224 8.224 0 01-2.605.996A4.107 4.107 0 006.03 6.03a11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.482A4.073 4.073 0 012 6.575v.051a4.107 4.107 0 003.292 4.022 4.095 4.095 0 01-1.085.145c-.265 0-.522-.026-.775-.074a4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 16.601a11.616 11.616 0 006.29 1.84" />
+                  </svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                  <span class="sr-only">LinkedIn</span>
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H7V9.25h2.682v.968h.039c.373-.707 1.285-1.453 2.646-1.453 2.829 0 3.348 1.861 3.348 4.28v3.294zM5.337 8.282A1.474 1.474 0 116.81 6.808a1.474 1.474 0 01-1.474 1.474zm1.367 8.056H4V9.25h2.704v7.088z" clip-rule="evenodd"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="team-overlay">
+              <div class="text-white">
+                <p class="font-medium">Connect with Emily</p>
+                <div class="mt-2 flex space-x-3">
+                  <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646A4.118 4.118 0 0019.448 2.3a8.224 8.224 0 01-2.605.996A4.107 4.107 0 006.03 6.03a11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.482A4.073 4.073 0 012 6.575v.051a4.107 4.107 0 003.292 4.022 4.095 4.095 0 01-1.085.145c-.265 0-.522-.026-.775-.074a4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 16.601a11.616 11.616 0 006.29 1.84"/>
+                    </svg>
+                  </a>
+                  <a href="#" class="text-white hover:text-blue-200 transition-colors duration-300">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.2c-.966 0-1.5-.644-1.5-1.4 0-.77.547-1.4 1.53-1.4s1.5.63 1.5 1.4c0 .756-.534 1.4-1.53 1.4zm13.5 11.268h-3v-5.604c0-1.07-.38-1.8-1.33-1.8-.725 0-1.157.487-1.348.957-.07.17-.087.41-.087.65v4.693h-3s.04-7.62 0-8.4h3v1.19c.398-.615 1.11-1.49 2.708-1.49 1.975 0 3.457 1.29 3.457 4.062v4.638z" clip-rule="evenodd"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 md:py-20 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 mobile-padding">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              Get in Touch
+            </h2>
+            <p class="mt-4 text-base md:text-xl text-gray-500">
+              Have questions? We'd love to hear from you.
+            </p>
+          </div>
+
+          <div class="mt-8 md:mt-12 bg-white rounded-lg shadow-lg overflow-hidden" data-aos="zoom-in">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+              <div class="p-6 sm:p-10 bg-blue-600 relative overflow-hidden">
+                <!-- Animated background elements -->
+                <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+                  <div class="absolute top-10 left-10 w-20 h-20 rounded-full bg-blue-400 opacity-20"></div>
+                  <div class="absolute top-40 right-10 w-32 h-32 rounded-full bg-indigo-500 opacity-20"></div>
+                  <div class="absolute bottom-10 left-20 w-24 h-24 rounded-full bg-blue-300 opacity-20"></div>
+                </div>
+
+                <div class="relative z-10">
+                  <h3 class="text-lg font-medium text-white">Contact Information</h3>
+                  <p class="mt-2 text-blue-100">
+                    Fill out the form and our team will get back to you within 24 hours.
+                  </p>
+
+                  <div class="mt-8 space-y-6">
+                    <div class="flex items-center" data-aos="fade-right" data-aos-delay="100">
+                      <svg class="h-6 w-6 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.358 4.072a1 1 0 01-.36 1.112l-2.708 2.032a11.042 11.042 0 005.292 5.292l2.032-2.708a1 1 0 011.112-.36l4.072 1.358a1 1 0 01.684.948V19a2 2 0 01-2 2h-1c-9.39 0-17-7.61-17-17V5z" />
+                      </svg>
+                      <span class="ml-3 text-blue-100">+91 7736882104</span>
+                    </div>
+
+                    <div class="flex items-center" data-aos="fade-right" data-aos-delay="200">
+                      <svg class="h-6 w-6 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8.17l7.89 5.26a2 2 0 002.22 0L21 8.17M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      <span class="ml-3 text-blue-100">yvanietec@gmail.com</span>
+                    </div>
+
+                    <!-- <div class="flex items-center" data-aos="fade-right" data-aos-delay="300">
+                      <svg class="h-6 w-6 text-blue-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span class="ml-3 text-blue-100">123 Innovation Drive, Tech City, CA 94107</span>
+                    </div> -->
+                  </div>
+
+                  <div class="mt-12">
+                    <div class="flex space-x-4">
+                      <a href="#" class="text-blue-200 hover:text-white transition-colors duration-300">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53a8.348 8.348 0 002.02-5.918 8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996A4.107 4.107 0 0016.616 4c-2.266 0-4.102 1.835-4.102 4.102 0 .32.036.63.106.93A11.65 11.65 0 013.07 5.149a4.104 4.104 0 001.27 5.482A4.073 4.073 0 012.8 10.1v.052a4.102 4.102 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                        </svg>
+                      </a>
+
+                      <a href="#" class="text-blue-200 hover:text-white transition-colors duration-300">
+                        <span class="sr-only">Facebook</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54v-2.891h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.891h-2.33v6.987C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
+                        </svg>
+                      </a>
+
+                      <a href="#" class="text-blue-200 hover:text-white transition-colors duration-300">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-3.368-4-3.109-4 0v5.604h-3v-10h3v1.555c1.396-2.586 7-2.777 7 2.476v5.969z" clip-rule="evenodd" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-6 sm:p-10">
+                <form class="space-y-6">
+                  <div data-aos="fade-up" data-aos-delay="100">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <div class="mt-1">
+                      <input type="text" name="name" id="name" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" />
+                    </div>
+                  </div>
+                  <div data-aos="fade-up" data-aos-delay="200">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <div class="mt-1">
+                      <input type="email" name="email" id="email" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md" />
+                    </div>
+                  </div>
+                  <div data-aos="fade-up" data-aos-delay="300">
+                    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                    <div class="mt-1">
+                      <textarea id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border border-gray-300 rounded-md"></textarea>
+                    </div>
+                  </div>
+                  <div data-aos="fade-up" data-aos-delay="400">
+                    <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                      Send Message
+                    </button>
+                  </div>
+
+                  <div class="text-center text-sm text-gray-500" data-aos="fade-up" data-aos-delay="500">
+                    <!-- <p>This is a demo contact form. In a real implementation, it would send data to a server.</p> -->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="contact" id="contact">
-        <div class="contact-form">
-            <h2>Initiate Connection</h2>
-            <form>
-                <input type="text" class="form-input" placeholder="Your Designation">
-                <input type="email" class="form-input" placeholder="Quantum Link">
-                <textarea class="form-input" rows="5" placeholder="Transmission Content"></textarea>
-                <button type="submit" class="form-input">Establish Connection</button>
-            </form>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-12 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div data-aos="fade-right">
+            <div class="flex items-center">
+              <!-- <svg class="h-8 w-auto text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg> -->
+              <span class="ml-2 text-xl font-semibold">Yvanietec</span>
+            </div>
+            <p class="mt-4 text-gray-400">
+              Empowering businesses with cutting-edge technology solutions since 2025.
+            </p>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="100">
+            <h3 class="text-sm font-semibold text-gray-300 uppercase tracking-wider">Solutions</h3>
+            <ul class="mt-4 space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Analytics</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Cloud Services</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Security</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">API Integration</a></li>
+            </ul>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-sm font-semibold text-gray-300 uppercase tracking-wider">Company</h3>
+            <ul class="mt-4 space-y-2">
+              <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About</a></li>
+              <li><a href="#team" class="text-gray-400 hover:text-white transition-colors duration-300">Team</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Careers</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Blog</a></li>
+            </ul>
+          </div>
+
+          <div data-aos="fade-up" data-aos-delay="300">
+            <h3 class="text-sm font-semibold text-gray-300 uppercase tracking-wider">Legal</h3>
+            <ul class="mt-4 space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Cookie Policy</a></li>
+            </ul>
+          </div>
         </div>
-    </section>
+
+        <div class="mt-12 border-t border-gray-800 pt-8">
+          <p class="text-gray-400 text-sm text-center">
+            &copy; 2025 YvanieTec. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
 
     <script>
-
-
-        // Particle Network
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
-                this.radius = Math.random() * 2;
-                this.alpha = Math.random() * 0.5;
-            }
-
-            draw() {
-                ctx.fillStyle = `hsla(${Math.random() * 360}, 100%, 50%, ${this.alpha})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-            }
-        }
-
-        const particles = Array(100).fill().map(() => new Particle());
-
-        function animate() {
-            // Clear canvas each frame so the video shows through.
-            // If you prefer trailing particles, reduce the alpha in the fillRect instead.
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        // Dynamic Color Shift
-        function updateColors() {
-            document.documentElement.style.setProperty('--hue', Date.now() / 100 % 360);
-            requestAnimationFrame(updateColors);
-        }
-        updateColors();
-
-        // Scroll Animations
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.service-card, .stat-item').forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(50px)';
-            observer.observe(el);
+      // Initialize AOS
+      document.addEventListener('DOMContentLoaded', function () {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true,
+          mirror: false
         });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+          });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 64, // Adjust for header height
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+
+        // Initialize Feather icons
+        if (typeof feather !== 'undefined') {
+          feather.replace();
+        }
+        
+        // Form submission (demo only)
+        const form = document.querySelector('form');
+        if (form) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form, so no data has been sent.');
+            form.reset();
+          });
+        }
+
+        // Animate counters
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounter = (counter) => {
+          const target = +counter.getAttribute('data-target');
+          let count = 0;
+          const inc = target / speed;
+
+          const updateCount = () => {
+            if (count < target) {
+              count += inc;
+              counter.innerText = Math.floor(count);
+              setTimeout(updateCount, 1);
+            } else {
+              counter.innerText = target;
+              if (target === 98) {
+                counter.innerText = target + '%';
+              }
+            }
+          };
+
+          updateCount();
+        };
+
+        // Intersection Observer for counters
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => {
+          counterObserver.observe(counter);
+        });
+
+        // Ripple effect for buttons
+        const rippleButtons = document.querySelectorAll('.ripple-btn');
+
+        rippleButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            const x = e.clientX - e.target.getBoundingClientRect().left;
+            const y = e.clientY - e.target.getBoundingClientRect().top;
+
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+              ripple.remove();
+            }, 600);
+          });
+        });
+        
+        // Generate particles
+        const container = document.querySelector('.particles-container');
+        const particleCount = 20;
+        
+        if (container) {
+          for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random size between 5px and 20px
+            const size = Math.random() * 15 + 5;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random position
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            
+            // Random opacity
+            particle.style.opacity = Math.random() * 0.5 + 0.1;
+            
+            // Random animation duration
+            const duration = Math.random() * 20 + 10;
+            particle.style.animationDuration = `${duration}s`;
+            
+            // Random animation delay
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            
+            container.appendChild(particle);
+          }
+        }
+      });
     </script>
 </body>
-
 </html>
